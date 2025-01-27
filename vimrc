@@ -1,5 +1,6 @@
 colorscheme molokai
 syntax enable
+set termguicolors
 set relativenumber
 set shiftwidth=4
 set expandtab
@@ -14,13 +15,8 @@ function! InstallPlug()
     call system("curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
 endfunction
 
-nnoremap <silent><C-s> :w<CR>
-nnoremap <silent><C-q> :q<CR>
-inoremap <silent><C-q> <ESC>1k<CR>
-nnoremap <silent><C-,> 10j<CR>
-inoremap <silent><C-,> <ESC>10j<CR>
-nnoremap <silent><C-.> 10k<CR>
-inoremap <silent><C-.> <ESC>10k<CR>
+nnoremap <silent><S-CR> :normal! o <CR>
+nnoremap <silent><C-S-CR> :normal! O <CR>
 nnoremap <silent><C-Space> :NERDTreeToggle<CR>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
