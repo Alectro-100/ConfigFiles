@@ -1,0 +1,35 @@
+#!/bin/bash
+
+FLAG="$1"
+GIT_DIR="$HOME/DEV_DIR/GIT/ConfigFiles"
+SCRIPTS="$HOME/.path/scripts"
+
+function Copy() {
+    cp $HOME/.vimrc "$GIT_DIR/vim_config/vimrc"
+    cp $HOME/.config/nvim/init.vim "$GIT_DIR/nvim_config/init.vim"
+
+    cp $HOME/.SHELL_RC "$GIT_DIR/Shell_config/SHELL_RC"
+    cp $HOME/.bashrc "$GIT_DIR/Shell_config/bashrc"
+
+    cp -r $HOME/.config/sway/* "$GIT_DIR/sway_config/"
+    cp $HOME/.config/foot/foot.ini "$GIT_DIR/sway_config/foot/"
+
+    cp -r $HOME/.config/i3/* "$GIT_DIR/i3_config/"
+    # cp $HOME/.config/kitty/kitty.conf "$GIT_DIR/i3_config/kitty/"
+
+    cp -r $HOME/.config/waybar/* "$GIT_DIR/waybar_config/"
+
+    cp -r $SCRIPTS/* $GIT_DIR/scripts
+}
+
+if [[ ! -d "$GIT_DIR" ]]; then
+    echo "Given Directory doesn't exits '$GIT_DIR'"
+    exit 1
+fi
+
+if [[ $FLAG == "cd" ]]; then
+    echo "cd "$GIT_DIR""
+fi
+
+Copy
+
