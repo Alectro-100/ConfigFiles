@@ -1,0 +1,46 @@
+#!/bin/bash
+
+FLAG="$1"
+GIT_DIR="$HOME/DEV_DIR/GIT/ConfigFiles"
+SCRIPTS="$HOME/.path/scripts"
+
+function Copy() {
+    cp -r $HOME/.config/hypr/* "$GIT_DIR/hyprland_config/" && \
+        echo "Copied Hyprland from '$HOME/.config/hypr/*' to '$GIT_DIR/hyprland_config/'"
+
+    cp $HOME/.vimrc.bak "$GIT_DIR/vim_config/vimrc" && \
+        echo "Copied vim config from '$HOME/.vimrc.bak' to '$GIT_DIR/vim_config/vimrc'"
+    cp $HOME/.config/nvim/init.vim.bak "$GIT_DIR/nvim_config/init.vim" && \
+        echo "Copied neovim config from '$HOME/.config/nvim/init.vim.bak' to '$GIT_DIR/nvim_config/init.vim'"
+
+    cp $HOME/.SHELL_RC "$GIT_DIR/Shell_config/SHELL_RC" && \
+        echo "Copied SHELL_RC config from '$HOME/.SHELL_RC' to '$GIT_DIR/Shell_config/SHELL_RC'"
+    cp $HOME/.bashrc "$GIT_DIR/Shell_config/bashrc" && \
+        echo "Copied bashrc config from '$HOME/.bashrc' to '$GIT_DIR/Shell_config/bashrc'"
+
+    cp -r $HOME/.config/sway/* "$GIT_DIR/sway_config/" && \
+        echo "Copied Swayconfigs from '$HOME/.config/sway/*' to '$GIT_DIR/sway_config/'"
+    cp $HOME/.config/foot/foot.ini "$GIT_DIR/sway_config/foot/" && \
+        echo "Copied foot config from '$HOME/.config/foot/foot.ini' to '$GIT_DIR/sway_config/foot/'"
+
+    cp -r $HOME/.config/i3/* "$GIT_DIR/i3_config/" && \
+        echo "Copied i3 configs from '$HOME/.config/i3/*' to '$GIT_DIR/i3_config/'"
+    # cp $HOME/.config/kitty/kitty.conf "$GIT_DIR/i3_config/kitty/"
+
+    cp -r $HOME/.config/waybar/* "$GIT_DIR/waybar_config/" && \
+        echo "Copied waybar configs from '$HOME/.config/waybar/*' to '$GIT_DIR/waybar_config/'"
+
+    cp -r $SCRIPTS/* $GIT_DIR/scripts && \
+        echo "Copied your scripts from '$SCRIPTS/*' '$GIT_DIR/scripts'"
+}
+
+if [[ ! -d "$GIT_DIR" ]]; then
+    echo "Given Directory doesn't exits '$GIT_DIR'"
+    exit 1
+fi
+
+if [[ $FLAG == "cd" ]]; then
+    builtin cd "$GIT_DIR"
+fi
+Copy
+
