@@ -1,0 +1,14 @@
+#!/bin/bash
+
+MUSIC_DIRECTORY="$HOME/Music"
+SELECTED=$(ls "${MUSIC_DIRECTORY}" | grep -i -E ".mp3|.wav|.flac" | fzf)
+
+if [[ -n ${SELECTED} ]]; then
+    echo -e "MUSIC: \033[38;2;80;250;100m${SELECTED}\033[0m"
+    echo -e "COMMAND: mpv --loop --no-video --volume=65 \"${MUSIC_DIRECTORY}/${SELECTED}\""
+    echo -e ""
+    mpv --loop --no-video --volume=65 "${MUSIC_DIRECTORY}/${SELECTED}"
+else
+    echo "No song selected"
+fi
+
